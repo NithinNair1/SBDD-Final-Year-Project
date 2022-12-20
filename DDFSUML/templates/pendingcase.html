@@ -1,0 +1,48 @@
+{% extends 'main.html' %}
+{% block content %}
+<style>
+  input[type='email'] {
+    display: none;
+
+  }
+
+  input[type='text'] {
+    display: none;
+  }
+
+  b {
+    color: #F9C94E;
+  }
+
+  textarea {
+    width: 45%;
+    height: 200px;
+    margin: 1em;
+    border-radius: 6px;
+    border-color: #F9C94E;
+  }
+</style>
+<div class="container py-4">
+  <b>Patient Nickname:</b> {{case.nickname}}<br>
+  <b>Symptoms: </b>{{case.listosymp}}<br>
+
+  <b>System Prediction: </b>{{case.predDiseases}}<br>
+  <b>Patient's Notes:</b><br>
+  {{case.note|linebreaks}}
+
+
+  <br>
+  <hr>
+  <form method="POST">
+    {% csrf_token %}
+    <input type="email" name="tomail" value="{{case.mail}}">
+    <input type="text" name="listofsymp" value="{{case.listosymp}}">
+    <input type="text" name="predDiseases" value="{{case.predDiseases}}">
+    <h3>Your Opinion:</h3>
+    <textarea name="content" placeholder="Write your diagnosis here.."></textarea>
+    <br>
+    <input class="btn" style="background-color: #F9C94E;" type="submit" value="Send Mail">
+  </form>
+
+</div>
+{% endblock content %}

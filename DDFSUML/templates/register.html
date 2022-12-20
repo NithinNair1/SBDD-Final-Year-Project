@@ -1,0 +1,58 @@
+{% extends 'main.html' %}
+{% block content %}
+{% if request.user.is_superuser %}
+<style>
+  input[type='text'],input[type='email'],input[type='password']{
+    width:70%;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+
+
+  }
+  input[type='submit']{
+    margin-top: 0.5em;
+  }
+</style>
+<div class="container py-4">
+
+    {% for message in messages %}
+    <div style="background-color: #776024;border:1px solid;border-color: #F9C94E;width: auto;padding: 1em;">
+    {{message}}
+  </div>
+
+    {% endfor %}
+<h2 class="display-4" style="color:#F9C94E">Register a Doctor</h2>
+
+<div class="row">
+
+  <div class="col-3"></div>
+  <div class="col-6">
+
+<form method="POST" autocomplete="off" action="">
+  {% csrf_token %}
+
+{% for field in form %}
+
+  {{field.label}}<br>
+  {{field}}
+  <br>
+
+{% endfor %}
+
+<input class="btn" style="background-color: #F9C94E;" type="submit" value="Create User">
+
+
+</form>
+</div>
+<div class="col-3"></div>
+
+</div>
+{% else %}
+
+<!-- Add 403 (or fix in views 😅) -->
+<h1 class="display-1">403</h1>
+<h1>Access Denied</h1>
+<!-- Add 403 (or fix in views 😅) -->
+
+{% endif %}
+{% endblock content %}

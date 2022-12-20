@@ -1,0 +1,37 @@
+{% extends 'main.html' %}
+{% block content %}
+<style>
+  a{
+
+    text-decoration: none;
+  }
+</style>
+
+<div class="container py-4">
+  <h2 class="display-2" style="color: #F9C94E;">Our Doctors</h2>
+<div class="col-5">
+{% for user in users %}
+{% if not user.is_superuser %}
+<div class="card my-3 text-dark" >
+
+<div class="card-header" style="background-color: #e1bf4d" >
+Dr. {{user.name}} <span class="text-dark">| {{user.education}}</span>
+</div>
+<div class="card-body" style="color: #0b4378;">
+  <b>Location: </b>{{user.location}}<br>
+
+  {{user.bio|truncatewords:15}} <a href="{% url 'doctor' user.id %}">Know More</a>
+ </div>
+
+</div>
+
+{% endif %}
+{% endfor %}
+</div>
+<a class="btn my-3" style="background-color: #F9C94E;color: #105596;" href="{% url 'register' %}">Register a Doctor</a>
+
+</div>
+
+
+
+{% endblock content %}

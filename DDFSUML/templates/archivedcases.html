@@ -1,0 +1,52 @@
+{% extends 'main.html' %}
+{% block content %}
+
+
+<style>
+  a {
+
+    text-decoration: none;
+  }
+</style>
+
+<div class="container py-4">
+  {% for message in messages %}
+  <div style="background-color: #776024;border:1px solid;border-color: #F9C94E;width: auto;padding: 1em;">
+    {{message}}
+  </div>
+
+  {% endfor %}
+  <h2 class="display-2" style="color: #F9C94E;">Archived Cases</h2>
+  <div class="col-5">
+
+    {% for case in cases %}
+    {% if case.complete is True %}
+
+    <div class="card my-3 text-dark">
+
+      <div class="card-header" style="background-color: #e1bf4d">
+        {{case.nickname}} <span class="text-dark">| Solved on: {{case.probsolve}}</span>
+      </div>
+      <div class="card-body" style="color: #0b4378;">
+        <b>Doctor: </b> Dr. {{case.doc}}<br>
+
+        <b>Symptoms: </b>{{case.listosymp}}<br>
+        <b>System Prediction: </b>{{case.predDiseases}}<br>
+        {{date}}
+        {{case.note|truncatewords:15}} <a href="{% url 'arcase' case.id %}">Know More</a>
+      </div>
+
+    </div>
+
+
+    {% endif %}
+    {% endfor %}
+  </div>
+  <a class="btn my-3" style="background-color: #F9C94E;color: #105596;" href="{% url 'cases' %}">Pending Cases</a>
+
+</div>
+
+
+
+
+{% endblock content %}

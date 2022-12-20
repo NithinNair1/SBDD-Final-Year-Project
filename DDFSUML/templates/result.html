@@ -1,0 +1,79 @@
+{% extends 'main.html' %}
+{% block content %}
+<style>
+  input[type='email']{
+    width: 45%;
+    margin:1em;
+    border-radius: 6px;
+    border-color:#F9C94E;
+  }
+  input[type='text']{
+    display: none;
+  }
+  textarea{
+    width: 45%;height: 200px;
+    margin:1em;
+    border-radius: 6px;
+    border-color:#F9C94E;
+  }
+</style>
+   
+<div class="container py-4">
+
+
+
+{% for symp in symps%}
+ 
+  <span class="btn my-1" style="background-color: #F9C94E;color:#105596;border-color: #F9C94E;cursor: default;">{{symp|title}}</span>
+
+  {%endfor%}
+
+  <div style="text-align: left;margin-top: 2em;">
+
+  {% if disease1 != disease2 %}
+   <span class="display-5" style="color:#fff;font-weight: bold;">{{disease1}}</span><br>
+   {% if disdesc1.desc %}<span style="color: #fff;">{{disdesc1.desc|linebreaks}}</span>{% endif %}
+   <br>
+  <h2>OR  </h2> 
+  <br>
+  <span class="display-5" style="color:#fff;font-weight: bold;">{{disease2}}</span><br>
+
+  {% if disdesc2.desc %}<span style="color: #fff;">{{disdesc2.desc|linebreaks}}</span>{% endif %}
+
+
+  {% else %}
+  <span class="display-5" style="color:#fff;font-weight: bold;">{{disease1}}</span><br>
+
+  {% if disdesc1.desc %}<span style="color: #fff;">{{disdesc1.desc|linebreaks}}</span>{% endif %}
+
+
+
+{% endif %}
+</div>
+
+<br>
+<hr>
+<h3>If you want a detailed diagnosis from our expert doctors, Please fill following Details</h3>
+<form action="" method="POST">
+  
+  {% csrf_token %}
+
+ {{form.listosymp}}
+ {{form.nickname}}
+ {{form.predDiseases}}
+ Email Id:<br> {{form.mail}}<br>
+ Additional Note:<br> {{form.note}}
+<br>
+  <input class="btn" style="background-color: #D9791F;color:#fff;" type="submit" value="Send">
+</form>
+<hr>
+
+
+</div>
+<div class="container" style="margin-bottom: 2em">
+  <div style="display: flex;justify-content: space-between;">
+<a  class="btn" style="background-color: #D9791F;color:#fff;border-color: #D9791F;" onclick="window.history.back()">Add Symptom</a>
+<a class="btn" style="background-color: #D9791F;color:#fff;" href="{% url 'home' %}"> New Search</a>
+</div>
+</div>
+  {% endblock content %}

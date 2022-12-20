@@ -1,0 +1,49 @@
+{% extends 'main.html' %}
+{% block content %}
+
+
+<div class="container py-4">
+
+  {% if request.user.is_superuser %}
+  <h1 class="display-3">Hello {{request.user.first_name}}</h1>
+  <hr>
+
+  <br>
+  <h2 class="display-5">Doctors</h2>
+  <a class="btn my-3" style="background-color: #D9791F;color:#fff;border-color: #D9791F;"
+    href="{% url 'register' %}">Register</a>
+  <a class="btn my-3" style="background-color: #D9791F;color:#fff;border-color: #D9791F;margin-left: 1em;"
+    href="{% url 'doctors' %}">List</a>
+  <br>
+  <br>
+  <h2 class="display-5">Cases</h2>
+  <a class="btn my-3" style="background-color: #D9791F;color:#fff;border-color: #D9791F;"
+    href="{% url 'cases' %}">Pending</a>
+  <a class="btn my-3" style="background-color: #D9791F;color:#fff;border-color: #D9791F;margin-left: 1em;"
+    href="{% url 'arcases' %}">Archived</a>
+
+
+
+
+  {% else %}
+
+  <h1 class="display-3">Hello Dr. {{request.user.first_name}}</h1>
+  <hr>
+  <br>
+  <h2 class="display-5">Profile</h2>
+  <a class="btn my-3" style="background-color: #D9791F;color:#fff;border-color: #D9791F;" href="{% url 'cases' %}">Edit
+    Profile</a>
+  <br>
+  <br>
+  <h2 class="display-5">Cases</h2>
+  <a class="btn my-3" style="background-color: #D9791F;color:#fff;border-color: #D9791F;"
+    href="{% url 'cases' %}">Pending</a>
+  <a class="btn my-3" style="background-color: #D9791F;color:#fff;border-color: #D9791F;margin-left: 1em;"
+    href="{% url 'arcases' %}">Archived</a>
+
+  {% endif %}
+
+</div>
+
+
+{% endblock content %}

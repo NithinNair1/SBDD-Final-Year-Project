@@ -1,0 +1,36 @@
+{% extends 'main.html' %}
+{% block content %}
+<style>
+  a{
+    color: #c5910c;
+    text-decoration: none;
+
+  }
+  a:hover{
+    color: #9c7c2c;
+    text-decoration: none;
+  }
+  h5{
+    margin-top: 1.5em;
+  }
+</style>
+
+<div class="container py-4">
+
+  <h2 class="display-5">{{user.name}}</h2>
+  <h4>{{user.education}}</h4>
+  <h5>Location: {{user.location}}</h5>
+  <h5>Email Id: {{user.email}}</h5>
+  <h5>Bio:</h5> <p>{{user.bio}}</p>
+
+  <h5 style="color: #F9C94E;text-decoration: none;">Website: {{user.website|urlize}}</h5>
+
+
+
+
+
+</div>
+
+
+
+{% endblock content %}

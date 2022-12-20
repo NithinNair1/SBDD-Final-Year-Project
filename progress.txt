@@ -1,0 +1,34 @@
+26th Oct 2022:-
+1.) Received ML part from Sterlin and discussed implementation requirements of the
+    machine learning models.
+2.) Created virtual environment venv1 and started with Django Project... awaiting 
+    pickle file from Sterlin.
+
+27th Oct 2022:- 
+1.) Studied basics of integrating joblib with Django
+
+28th Oct 2022:-
+1.) (Tried 🤷‍♂️) Studied the Google Collab
+2.) Received the pickle files..
+3.) Created App and started to work on app-model integration.
+
+29th Oct 2022:-
+1.) Completed the App-Model Integration
+2.) Added views and forms to get result
+
+5th Nov 2022:-
+1.) Created Doctor Model
+
+7th Nov 2022:-
+1.) Worked on User Interface
+
+10th Nov 2022:-
+1.) Created Models to Add query to the Doctors
+
+11th Nov 2022:-
+1.) Created urls specific to site-staff and doctors
+2.) Worked on route restrictions
+
+25th Nov 2022:-
+1.) Implemented SMTP for mail (reply back to user from doctor)
+

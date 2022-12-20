@@ -1,0 +1,40 @@
+{% extends 'main.html' %}
+{% block content %}
+<style>
+  input[type='email'] {
+    display: none;
+
+  }
+
+  input[type='text'] {
+    display: none;
+  }
+
+  b {
+    color: #F9C94E;
+  }
+
+  textarea {
+    width: 45%;
+    height: 200px;
+    margin: 1em;
+    border-radius: 6px;
+    border-color: #F9C94E;
+  }
+</style>
+<div class="container py-4">
+  <b>Patient Nickname:</b> {{case.nickname}}<br>
+  <b>Symptoms: </b>{{case.listosymp}}<br>
+
+  <b>System Prediction: </b>{{case.predDiseases}}<br>
+  <b>Patient's Notes:</b><br>
+  {{case.note|linebreaks}}
+  <br>
+  <b>Doctor: </b>
+  {{case.doc}}
+  <br>
+  <b>Doctor's Note: </b>
+  {{case.docnote|linebreaks}}
+
+</div>
+{% endblock content %}

@@ -1,0 +1,57 @@
+{% extends 'main.html' %}
+{% block content %}
+
+<main class="container my-5 d-flex justify-content-center">
+
+
+  <div style="text-align: center;">
+    {% for message in messages %}
+    <div style="background-color: #776024;border:1px solid;border-color: #F9C94E;width: auto;padding: 1em;">
+      {{message}}
+    </div>
+
+    {% endfor %}
+    <h1 class="display-5" style="margin-top: 1em;">Identify possible diseases from your symptoms</h1>
+
+    <div class="row">
+      <div class="col-2">
+      </div>
+
+      <div class="col-8">
+        <div class="input-group" style="margin-top: 4.4375em;">
+          <input class="form-control" id="symptoms" list="dl" type="text" autocomplete="off"
+            placeholder="Add your symptoms" name="symp" required>
+          <datalist id="dl">
+            {% for symp in symps %}
+            <option value="{{symp}}"></option>
+            {% endfor %}
+          </datalist>
+          <input type="submit" class="btn btn-primary"
+            style="background-color: #F9C94E;color:#105596;border-color: #F9C94E;" onclick="appendData()" value="Add">
+        </div>
+      </div>
+      <div class="col-2">
+      </div>
+
+    </div>
+
+    <br>
+    <br>
+    <form action="results">
+
+
+
+
+      <textarea hidden name="allSymps" id="allSymps" cols="30" rows="10" required></textarea>
+
+
+      <div id="listSymp">
+
+      </div>
+      <br><br>
+      <input type="submit" class="btn" style="background-color: #D9791F;color:#fff;" value="Diagnose">
+
+    </form>
+  </div>
+</main>
+{% endblock content %}

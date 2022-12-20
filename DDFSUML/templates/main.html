@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Predict Disease using Symptoms</title>
+  <style>
+     
+  </style>
+  
+  <link rel="icon" type="image/x-icon" href="https://gdurl.com/dNX2">
+
+
+</head>
+<body style="background-color: #105596;color: #fff;">
+
+
+  <section id="dashboard">
+      <nav class="navbar navbar-expand-lg py-3" style="background-color: #002343;">
+        <div class="container-fluid">
+          <a class="display-5 mx-2 text-light" style="font-family:'Poppins', sans-serif;text-decoration: none;" href="{% url 'home' %}">
+            <img src="" alt="">
+            prognosis
+          </a>
+          
+          <div class="d-flex" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link text-light" style="margin-right: 2em;" aria-current="page" href="{% url 'about' %}">About</a>
+              </li>
+              {% if not request.user.is_authenticated %}
+              <li class="nav-item">
+                <a title="Login only for Doctors"class="nav-link text-light" style="margin-right: 2em;" aria-current="page" href="{% url 'login' %}">Login</a>
+              </li>
+              
+              {% else %}
+              {% if request.user.is_superuser %}
+              <li class="nav-item">
+                <a class="nav-link text-light" style="margin-right: 2em;" aria-current="page" href="{% url 'register' %}">Register</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-light" style="margin-right: 2em;" aria-current="page" href="{% url 'doctors' %}">Doctors</a>
+              </li>
+              {% endif %}
+              <li class="nav-item">
+                <a class="nav-link text-light" style="margin-right: 2em;" aria-current="page" href="{% url 'logout' %}">Logout</a>
+              </li>
+              <li class="nav-item">
+                <span class="nav-link text-light" style="margin-right: 2em;font-weight: bold;" aria-current="page">{{request.user.first_name}} {{request.user.last_name}}</span>
+              </li>
+              {% endif %}
+              </ul>
+              </div>
+              </div>
+              </nav>
+
+
+
+
+
+  {% block content %}
+
+  {% endblock content%}
+
+
+  </section>
+
+
+  <script>
+
+    function appendData(){
+          var value = document.getElementById('symptoms').value;
+          var value2 = document.getElementById('allSymps').value;
+          if (value != ""){
+          if (value2!=""){
+          document.getElementById('allSymps').innerHTML = value2+","+value;
+        }
+        else{
+          document.getElementById('allSymps').innerHTML = value;
+        }
+
+        document.getElementById('listSymp').innerHTML+=
+        `
+        <span class = "btn mx-1 my-1" style="cursor: default;background-color: #F9C94E;color:#105596;border-color: #F9C94E;">${value}</span>
+        `
+
+        document.getElementById('symptoms').value = "";}
+        else{
+          alert("Enter/Find Symptom")
+        }
+        }
+
+    
+  </script>
+
+
+  
+</body>
+</html>
